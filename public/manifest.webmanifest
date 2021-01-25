@@ -1,0 +1,46 @@
+{
+  "short_name": "Hakqlo",
+  "name": "Hakqlo App",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "description": "Hakqlo's PWA app",
+  "categories": ["tech", "coding", "community"],
+  "icons": [
+    {
+      "src": "./logo008b.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "./icon_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon_192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon_96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "shortcut 1",
+      "short_name": "shortcut 1",
+      "description": "hello",
+      "url": "./index.html?call=shortcut&content=shortcut1"
+    },
+    {
+      "name": "shortcut 2",
+      "short_name": "shortcut 2",
+      "description": "what's up boy",
+      "url": "./index.html?call=shortcut&content=shortcut2"
+    }
+  ]
+}

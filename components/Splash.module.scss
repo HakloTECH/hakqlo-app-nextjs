@@ -1,0 +1,33 @@
+#splash {
+  position: absolute;
+  background-color: black;
+  display: flex;
+  z-index: 100200;
+  transform: translateZ(200px);
+  justify-content: center;
+  align-items: center;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  opacity: 1;
+  pointer-events: auto;
+  //transition: opacity 1s ease 2s;
+  transition: opacity 0s ease 0s;
+  svg#logo_anime {
+    width:100vw;
+    height: 100vh;
+    margin: 0;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    >g {
+      fill: url(#logo_grad);
+    }
+  }
+  &.clear {
+    opacity: 0;
+    transition: opacity 1s ease 0s;
+    pointer-events: none;
+  }
+}

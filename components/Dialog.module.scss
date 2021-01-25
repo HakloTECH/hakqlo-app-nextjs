@@ -1,0 +1,88 @@
+//@import 'dialog-polyfill/dist/dialog-polyfill.css';
+
+dialog.mobile-dialog {
+  position: fixed;
+  /*margin-top: 0px;
+  margin-bottom: 0px;*/
+  z-index: 100149;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background-color: rgba(73, 73, 73, 0.575);
+  color: rgba(214, 214, 214, 0.925);
+  border-width: 0px;
+  border-radius: 5px;
+  padding: 8px;
+  width: calc(100vw - 40px);
+  text-align: center;
+  font-family: Arial;
+  transition: transform 0.5s ease;
+  display: block;
+  bottom: 10px;
+  user-select: none;
+  &[open] {
+    transform: translateY(0%);
+  }
+  &:not([open]),&.sent-back {
+    transform: translateY(100%);
+    display: block;
+  }
+  form{
+    margin: 0px;
+    >div{
+      margin: 10px 0px 0px 0px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid;
+      border-color:rgba(128, 128, 128, 0.63);
+      ol {
+        margin-bottom: 0px;
+      }
+      li {
+        text-align: left;
+        margin: 10px 0px;
+        * {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+    }
+    >p{
+      text-align: center;
+      border-bottom: 1px solid;
+      padding-bottom: 8px;
+      border-color:rgba(128, 128, 128, 0.63);
+      margin: 0px;
+      padding: 18px;
+      button{
+        position: fixed;
+        right: 5px;
+        padding: initial;
+        padding: 2px 6px;
+      }
+      
+    }
+    p.title{
+      text-align: left;
+      font-size: large;
+      padding: 0px;
+      padding-bottom: 8px;
+      color: rgb(243, 243, 243);
+    }
+  }
+  menu{
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  button{
+    position: relative;
+    font-size: large;
+    border-width: 0px;
+    border-radius: 5px;
+    color: rgba(56, 172, 255, 0.91);
+    background-color: transparent;
+    padding: 12px 10px 4px 10px;
+    margin: 0px;
+  }
+}
