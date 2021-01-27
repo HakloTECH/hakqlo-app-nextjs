@@ -1,5 +1,6 @@
 import React, { forwardRef, createRef, useEffect, useState } from 'react'
-import dialogPolyfill from 'dialog-polyfill';
+import dynamic from 'next/dynamic'
+const dialogPolyfill = dynamic(()=>import('dialog-polyfill'), {ssr: false});
 const ModalBase = forwardRef((p, modal) => {
   const {
     children,
@@ -12,7 +13,7 @@ const ModalBase = forwardRef((p, modal) => {
   } = p
   useEffect(() => {
     const self = modal.current
-    dialogPolyfill.registerDialog(self);
+    dialogPolyfill.registerDialog?.(self);
     self.onclose=e => {
       onClose(e, self)
     }

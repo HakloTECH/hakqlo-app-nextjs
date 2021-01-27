@@ -6,7 +6,7 @@ const Window1 = props => {
       <p>Window 1</p>
       <button
         onClick={() => {
-          props.winList.setState({listView: true})
+          props.controllers.setListView(true)
         }}>
         Open List
       </button>
@@ -19,7 +19,7 @@ const Window2 = props => {
       <p>Window 2</p>
       <button
         onClick={() => {
-          props.winList.setState({listView: true})
+          props.controllers.setListView(true)
         }}>
         Open List
       </button>
@@ -32,7 +32,7 @@ const Window3 = props => {
       <p>Window 3</p>
       <button
         onClick={() => {
-          props.winList.setState({listView: true})
+          props.controllers.setListView(true)
         }}>
         Open List
       </button>
@@ -45,7 +45,7 @@ const Window4 = props => {
       <p>Window 4</p>
       <button
         onClick={() => {
-          props.winList.setState({listView: true})
+          props.controllers.setListView(true)
         }}>
         Open List
       </button>
@@ -58,7 +58,7 @@ const Window5 = props => {
       <p>Window 5</p>
       <button
         onClick={() => {
-          props.winList.setState({listView: true})
+          props.controllers.setListView(true)
         }}>
         Open List
       </button>
@@ -71,7 +71,7 @@ const Window6 = props => {
       <p>Window 6</p>
       <button
         onClick={() => {
-          props.winList.setState({listView: true})
+          props.controllers.setListView(true)
         }}>
         Open List
       </button>

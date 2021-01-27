@@ -4,12 +4,12 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="icon" sizes="any" href="./favicon.svg" type="image/svg+xml" />
+          <link rel="icon" sizes="any" href="./icons/favicon.svg" type="image/svg+xml" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="theme-color" content="#000000" />
-          <link rel="apple-touch-icon" href="./favicon.svg" type="image/svg+xml" />
-          <link rel="apple-touch-icon" href="./apple-touch-icon.png" type="image/png" />
-          <link rel="mask-icon" href="./favicon.svg" color="black" />
+          <link rel="apple-touch-icon" href="./icons/favicon.svg" type="image/svg+xml" />
+          <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" type="image/png" />
+          <link rel="mask-icon" href="./icons/favicon.svg" color="black" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
           <meta property="og:image" content="https://hakqlo.github.io/icon/logoOGP.png" />

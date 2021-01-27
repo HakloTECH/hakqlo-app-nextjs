@@ -1,23 +1,29 @@
-import React from 'react'
+import React, { createRef, useEffect, useState } from 'react'
 import anime from 'animejs'
-import './Splash.module.scss'
+import styles from './Splash.module.scss'
 const window = globalThis;
 window.onSplashEndFunctions = [];
 window.onsplashend=()=>{};
-export default class extends React.Component {
-  
-  
-  componentDidMount() {
-    const splashScreen = document.querySelector('#splash')
-    const logoGrad = document.querySelector('svg#logo_anime #logo_grad')
+const Splash = () =>{
+  const spscreenRef = createRef(), 
+  logoGradRef = createRef(), 
+  logoGRef = createRef(),
+  gCentRef = createRef(),
+  gAroundRef = createRef(),
+  endColorRef = createRef();
+  const dur = 1300
+  const fadeoutTime = 700
+  let bw, bh, bigger
+  useEffect(()=>{
+    const splashScreen = spscreenRef.current;
+    const logoGrad = logoGradRef.current;
+    const logoG = logoGRef.current
+    /*
     logoGrad.setAttribute('x1','-20px')
     logoGrad.setAttribute('x2', '20px')
     logoGrad.setAttribute('y1', '-57.73502691896257px')
     logoGrad.setAttribute('y2', '57.73502691896257px')
-    const logoG = document.querySelector('svg#logo_anime g')
-    const dur = 1300
-    const fadeoutTime = 700
-    let bw, bh, bigger
+    */
     window.onsplashend = (func) =>{
       window.onSplashEndFunctions.push(func);
     }
@@ -29,9 +35,8 @@ export default class extends React.Component {
     }
     onResize()
     window.addEventListener('resize',onResize)
-    
     anime({
-      targets: 'svg#logo_anime path#centri',
+      targets: gCentRef.current,
       d: [
         {
           value: [
@@ -48,7 +53,7 @@ export default class extends React.Component {
       duration: dur,
     })
     anime({
-      targets: 'svg#logo_anime path#around',
+      targets: gAroundRef.current,
       d: [
         {
           value: [
@@ -74,7 +79,7 @@ export default class extends React.Component {
       duration: dur,
     })
     anime({
-      targets: 'svg#logo_anime stop[offset="85%"]',
+      targets: endColorRef.current,
       'stop-color': [
         {value: '#6ce9fb'},
         {value: '#d15af9'}, 
@@ -84,7 +89,7 @@ export default class extends React.Component {
       duration: 1500,
     })
     anime({
-      targets: 'svg#logo_anime',
+      targets: logoGrad,
       filter: [
         {value: 'drop-shadow(0px 0px 0px #8fd0ff)'},
         {value: 'drop-shadow(0px 0px 15px #8fd0ff)'},
@@ -97,29 +102,27 @@ export default class extends React.Component {
     })
     
     setTimeout(() => {
-      splashScreen.classList.add('clear')
+      splashScreen.classList.add(styles.clear)
       
       setTimeout(() => {
         window.onSplashEndFunctions.forEach(v=>v())
       }, fadeoutTime/2)
     },3000)
-  }
-
-  render() {
-    return (
-      <div id='splash'>
-        <svg id='logo_anime'>
-          <linearGradient xmlns='http://www.w3.org/2000/svg' id='logo_grad'  gradientUnits='userSpaceOnUse'>
-            <stop offset="0%" stopColor='#01fdff' ></stop>
-            <stop offset="85%" stopColor='#01fdff' ></stop>
-          </linearGradient>
-          <g stroke='transparent'>
-            <path id='around' d='M 0 0 l 0 0 l 0 0 l 0 0 z m 0 0 l 0 0 l 0 0 l 0 0 z M 0 0 l 0 0 l 0 0 l 0 0 z m 0 0 l 0 0 l 0 0 l 0 0 z M 0 0 l 0 0 l 0 0 l 0 0 z m 0 0 l 0 0 l 0 0 l 0 0 z M 0 0 l 0 0 l 0 0' >
-            </path>
-            <path id='centri' d=' M 0 0 l 0 0 l 0 0 z'></path>
-          </g>
-        </svg>
-      </div>
-    )
-  }
+  },[])
+  return (
+    <div id={styles.splash} ref={spscreenRef}>
+      <svg id={styles['logo_anime']} ref={logoGradRef}>
+        <linearGradient xmlns='http://www.w3.org/2000/svg' id='logo_grad'  gradientUnits='userSpaceOnUse' x1="-20px" x2="20px" y1="-57.73502691896257px" y2="57.73502691896257px">
+          <stop offset="0%" stopColor='#01fdff' ></stop>
+          <stop offset="85%" stopColor='#01fdff' ref={endColorRef}></stop>
+        </linearGradient>
+        <g stroke='transparent' ref={logoGRef}>
+          <path id='around' ref={gAroundRef} d='M 0 0 l 0 0 l 0 0 l 0 0 z m 0 0 l 0 0 l 0 0 l 0 0 z M 0 0 l 0 0 l 0 0 l 0 0 z m 0 0 l 0 0 l 0 0 l 0 0 z M 0 0 l 0 0 l 0 0 l 0 0 z m 0 0 l 0 0 l 0 0 l 0 0 z M 0 0 l 0 0 l 0 0' >
+          </path>
+          <path id='centri' d=' M 0 0 l 0 0 l 0 0 z' ref={gCentRef}></path>
+        </g>
+      </svg>
+    </div>
+  )
 }
+export default Splash;

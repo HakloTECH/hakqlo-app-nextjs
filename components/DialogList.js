@@ -1,6 +1,6 @@
 import React from 'react';
 //import ReactDOM from 'react-dom'
-import './Dialog.module.scss';
+import styles from './Dialog.module.scss';
 
 import { Modal } from './Modal'
 //import Dialog from './Dialog';
@@ -63,10 +63,10 @@ export default class extends React.Component {
                 content.resolve(dialog.returnValue)
               }
             } className={
-              'mobile-dialog '+(this.state.dialogs.length-1>index) ? 'sent-back' : ''
+              styles['mobile-dialog']+' '+(this.state.dialogs.length-1>index) ? styles['sent-back'] : ''
             }>
               <form method='dialog'>
-                <p className='title'>
+                <p className={styles['title']}>
                   {content.title}
                   <button value='cancel'>cancel</button>
                 </p>

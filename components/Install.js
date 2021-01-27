@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import '../css/install.scss'
+import './Install.module.scss'
 import { windows, macos, ios, safari } from 'mini-platform-detect'
 import  InlineSVG from './InlineSVG'
 import i18n from 'i18next';

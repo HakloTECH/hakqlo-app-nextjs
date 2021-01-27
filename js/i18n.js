@@ -14,7 +14,7 @@ if you want to put periods or colons, try things like following:
   "Hello": "Hello."
 }
 */
-window.searchParams = new URLSearchParams(location.search);
+//window.searchParams = new URLSearchParams(location.search);
 i18n
 .use(detector)
 .use(initReactI18next)
@@ -35,5 +35,9 @@ i18n
   }
 
 })
+
+//--only for testing
+const window = globalThis
 window.changeLang = (l) =>i18n.changeLanguage(l)
+//
 export default i18n;

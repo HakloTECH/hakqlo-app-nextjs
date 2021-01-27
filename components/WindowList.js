@@ -1,7 +1,7 @@
-import React from 'react'
+import React , { createRef, useEffect, useState, useCallback } from 'react'
 import AppWindow from './AppWindow'
 import { Window1, Window2, Window3, Window4, Window5, Window6 } from './Windows'
-import './WindowList.module.scss'
+import styles from './WindowList.module.scss'
 /*
 Niwa-chan, I want this AppWindow to have following functionalities:
 - create-window
@@ -17,7 +17,53 @@ you can know if the URL query has a 'parameter',
 searchParams.has('parameter')  //true or false
 searchParams.get('parameter')  //returns the value
 */
-export default class extends React.Component {
+const WindowList = ({}) =>{
+  const [appWindows, setAppWindows] = useState(
+    [Window1,
+    Window2,
+    Window3,
+    Window4,
+    Window5,
+    Window6,
+  ])
+  const [currentWin, setCurrentWin] = useState(0)
+  const [scrollLength, setScrollLength] = useState(0)
+  const [listView, setListView] = useState(true)
+  const [scrolling, setScrolling] = useState(false)
+  function scrollTo(moveLength) {
+    let scrollLength = moveLength % appWindows.length
+    if (scrollLength < 0) scrollLength += appWindows.length
+    setScrollLength(scrollLength)
+  }
+  let bringToCenter =useCallback(()=> setScrollLength(Math.round(scrollLength)),[scrollLength])
+  //const getScrollLength =()=> scrollLength;
+  /*useEffect(()=>{
+    bringToCenter =()=> setScrollLength(Math.round(scrollLength))
+    //getScrollLength =()=> scrollLength;
+  },[scrollLength])*/
+  
+  return (
+    <div className={
+      styles['window-list'] + ' ' +
+        (scrolling ? styles.scrolling : '')
+      }>
+      {appWindows.map((component, index) =>
+        <AppWindow 
+          controllers={{
+            currentWin, appWindows, scrolling, listView, scrollLength,
+            setCurrentWin, scrollTo, bringToCenter, setScrolling, setListView
+          }} 
+          index={index} 
+          key={index} 
+          Component={component}
+        />
+      )}
+    </div>
+  )
+}
+export default WindowList;
+/*
+export class WinListCls extends React.Component {
   appWindows = [
     Window1,
     Window2,
@@ -37,12 +83,6 @@ export default class extends React.Component {
     window.onsplashend(()=>this.setState({
       listView: false
     }))
-    if (searchParams.has('appWindow')) {
-      this.setState({
-        currentWin: Number(searchParams.get('appWindow')),
-        scrollLength: Number(searchParams.get('appWindow'))
-      })
-    }
   }
 
   scrollTo(moveLength) {
@@ -58,8 +98,8 @@ export default class extends React.Component {
   render() {
     return (
       <div className={
-          'window-list ' +
-          (this.state.scrolling ? 'scrolling' : '')
+        styles['window-list'] + ' ' +
+          (this.state.scrolling ? styles.scrolling : '')
         }>
         {this.appWindows.map((component, index) =>
           <AppWindow winList={this} component={component} index={index} key={index} />
@@ -68,3 +108,4 @@ export default class extends React.Component {
     )
   }
 }
+*/

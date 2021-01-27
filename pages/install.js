@@ -1,5 +1,5 @@
 
-import Install from '../components/Install'
+//import Install from '../components/Install'
 
 export async function getStaticProps() {
   return {
@@ -8,3 +8,6 @@ export async function getStaticProps() {
     },
   };
 }
+/*export default function(props){
+  return Install
+}*/

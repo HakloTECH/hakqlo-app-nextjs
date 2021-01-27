@@ -9,22 +9,22 @@
   "categories": ["tech", "coding", "community"],
   "icons": [
     {
-      "src": "./logo008b.svg",
+      "src": "./icons/logo008b.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     },
     {
-      "src": "./icon_512x512.png",
+      "src": "./icons/icon_512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "./icon_192x192.png",
+      "src": "./icons/icon_192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./icon_96x96.png",
+      "src": "./icons/icon_96x96.png",
       "sizes": "96x96",
       "type": "image/png"
     }

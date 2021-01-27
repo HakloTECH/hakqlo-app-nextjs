@@ -1,3 +1,4 @@
+import Head from 'next/head'
 
 import Splash from '../components/Splash'
 import WindowList from '../components/WindowList'
@@ -6,7 +7,11 @@ import '../js/i18n';
 
 function App(props) {
   return (
-    <div className='App'>
+    <div>
+      <Head>
+        <title>Hakqlo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover" />
+      </Head>
       <Splash />
       <WindowList />
       <DialogList />
