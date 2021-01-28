@@ -35,7 +35,7 @@ const WindowList = ({}) =>{
     if (scrollLength < 0) scrollLength += appWindows.length
     setScrollLength(scrollLength)
   }
-  let bringToCenter =useCallback(()=> setScrollLength(Math.round(scrollLength)),[scrollLength])
+  const bringToCenter = useCallback(()=> setScrollLength(Math.round(scrollLength)),[scrollLength])
   //const getScrollLength =()=> scrollLength;
   /*useEffect(()=>{
     bringToCenter =()=> setScrollLength(Math.round(scrollLength))
@@ -51,7 +51,7 @@ const WindowList = ({}) =>{
         <AppWindow 
           controllers={{
             currentWin, appWindows, scrolling, listView, scrollLength,
-            setCurrentWin, scrollTo, bringToCenter, setScrolling, setListView
+            setCurrentWin, scrollTo, bringToCenter, setScrolling, setListView, setScrollLength
           }} 
           index={index} 
           key={index} 

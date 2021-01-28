@@ -22,7 +22,6 @@ const AppWindow = ({winList, Component, index, controllers}) =>{
     appWindows, 
     scrolling, 
     listView,
-    getScrollLength,
     scrollLength,
     setCurrentWin, 
     scrollTo, 
@@ -30,7 +29,6 @@ const AppWindow = ({winList, Component, index, controllers}) =>{
     setScrolling, 
     setListView, 
   } = controllers;
-  //const initWLScrollXStart =()=>setWLScrollXStart(scrollLength)
   const onTouchStart = useCallback(e => {
     setScrollXStart(e.changedTouches[0].screenX*3.3333/window.screen.width)
     setWLScrollXStart(scrollLength)
@@ -45,25 +43,32 @@ const AppWindow = ({winList, Component, index, controllers}) =>{
   onTouchEnd = useCallback(e => {
     setScrolling(false)
     bringToCenter()
-  },[]),
+  },[bringToCenter]),
   onClick = useCallback(e => {
     setCurrentWin(index);
     setListView(false)
   },[])
   useEffect(()=>{
     const listCover = listCoverRef.current
-    
     listCover.addEventListener('touchstart', onTouchStart, {passive: false})
+    return ()=>listCover.removeEventListener('touchstart', onTouchStart, {passive: false})
+  },[onTouchStart])
+  useEffect(()=>{
+    const listCover = listCoverRef.current
     listCover.addEventListener('touchmove', onTouchMove, {passive: false})
+    return ()=>listCover.removeEventListener('touchmove', onTouchMove, {passive: false})
+  },[onTouchMove])
+  useEffect(()=>{
+    const listCover = listCoverRef.current
     listCover.addEventListener('touchend', onTouchEnd, {passive: false})
+    return ()=>listCover.removeEventListener('touchend', onTouchEnd, {passive: false})
+  },[onTouchEnd])
+  
+  useEffect(()=>{
+    const listCover = listCoverRef.current
     listCover.addEventListener('click', onClick, {passive: false})
-    /*return ()=>{
-      listCover.removeEventListener('touchstart', onTouchStart, {passive: false})
-      listCover.removeEventListener('touchmove', onTouchMove, {passive: false})
-      listCover.removeEventListener('touchend', onTouchEnd, {passive: false})
-      listCover.removeEventListener('click', onClick, {passive: false})
-    }*/
-  },[])
+    return ()=>listCover.removeEventListener('click', onClick, {passive: false})
+  },[onClick])
 
   useEffect(()=>{
     setFocused( currentWin === index )
