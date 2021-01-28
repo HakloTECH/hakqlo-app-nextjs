@@ -21,7 +21,7 @@ function App(props) {
 export async function getStaticProps() {
   return {
     props: {
-      test:true
+      
     },
   };
 }

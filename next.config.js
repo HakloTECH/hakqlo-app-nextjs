@@ -6,4 +6,23 @@ module.exports = withPWA({
     disable: dev
   },
   // other next config
+  module:{
+    rules: [
+      { test: /\.svg$/,
+        use: [
+          'file-loader',
+          {
+            loader: 'svgo-loader',
+            options: {
+              plugins: [
+                {removeOffCanvasPaths: true},
+                {removeDimensions: true},
+                {reusePaths: true}
+              ]
+            }
+          },
+        ]
+      },
+    ]
+  }
 })

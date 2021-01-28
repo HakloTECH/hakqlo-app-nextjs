@@ -37,10 +37,9 @@ const WindowList = ({}) =>{
   }
   const bringToCenter = useCallback(()=> setScrollLength(Math.round(scrollLength)),[scrollLength])
   //const getScrollLength =()=> scrollLength;
-  /*useEffect(()=>{
-    bringToCenter =()=> setScrollLength(Math.round(scrollLength))
-    //getScrollLength =()=> scrollLength;
-  },[scrollLength])*/
+  useEffect(()=>{
+    window.onsplashend(()=>setListView(false))
+  },[])
   
   return (
     <div className={

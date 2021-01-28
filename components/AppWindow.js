@@ -29,6 +29,27 @@ const AppWindow = ({winList, Component, index, controllers}) =>{
     setScrolling, 
     setListView, 
   } = controllers;
+  /*
+  onTouchStart={e => {
+          setScrollXStart(e.changedTouches[0].screenX*3.3333/window.screen.width)
+          setWLScrollXStart(scrollLength)
+          setScrolling(true)
+        }}
+        onTouchMove={e => {
+          e.preventDefault()
+          const moveLength = scrollXStart-e.changedTouches[0].screenX*3.3333/window.screen.width+WLScrollXStart
+          if (appWindows.length === 1 && (moveLength > 0.4 || moveLength < -0.4)) return 0
+          scrollTo(moveLength)
+        }}
+        onTouchEnd={e => {
+          setScrolling(false)
+          bringToCenter()
+        }}
+        onClick={()=>{
+          const listCover = listCoverRef.current
+          listCover.addEventListener('click', onClick, {passive: false})
+          return ()=>listCover.removeEventListener('click', onClick, {passive: false})
+        }}*/
   const onTouchStart = useCallback(e => {
     setScrollXStart(e.changedTouches[0].screenX*3.3333/window.screen.width)
     setWLScrollXStart(scrollLength)
@@ -69,7 +90,7 @@ const AppWindow = ({winList, Component, index, controllers}) =>{
     listCover.addEventListener('click', onClick, {passive: false})
     return ()=>listCover.removeEventListener('click', onClick, {passive: false})
   },[onClick])
-
+  
   useEffect(()=>{
     setFocused( currentWin === index )
     const distanceFromCenter = getDistanceFromCenter(index, scrollLength, appWindows.length)
@@ -92,7 +113,8 @@ const AppWindow = ({winList, Component, index, controllers}) =>{
       }>
       <div
         className={styles['list-cover']}
-        ref={listCoverRef}></div>
+        ref={listCoverRef}
+        ></div>
       <Component controllers={{setListView}}/>
     </div>
   )

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import './Install.module.scss'
 import { windows, macos, ios, safari } from 'mini-platform-detect'
+import Image from 'next/image'
 import  InlineSVG from './InlineSVG'
+import dynamic from 'next/dynamic'
+
 import i18n from 'i18next';
 import { useTranslation, Trans } from "react-i18next";
 
@@ -37,8 +40,8 @@ export default (props) => {
             popup(t('Add to Home Screen'),[
               t('You can install Hakqlo App by adding this website to your home screen'),
               <ol>
-                <li><Trans>Tap the <InlineSVG src={require('../../icon/ios-safari-share-icon.svg').default} color={'rgba(56, 172, 255, 0.91)'} /> icon at the bottom of your browser</Trans></li>
-                <li><Trans>Choose <InlineSVG src={require('../../icon/ios-safari-add-to-home-icon.svg').default} color={'white'} /> Add to Home Screen</Trans></li>
+                <li><Trans>Tap the <InlineSVG src={dynamic(()=>import('../public/icons/ios-safari-share-icon.svg'))} color={'rgba(56, 172, 255, 0.91)'} /> icon at the bottom of your browser</Trans></li>
+                <li><Trans>Choose <InlineSVG src={dynamic(()=>import('../public/icons/ios-safari-add-to-home-icon.svg'))} color={'white'}/> Add to Home Screen</Trans></li>
               </ol>
             ], ['OK',{value:'problem',text: 'getting a problem?'}]).then(v=>{
               //console.log(v);
