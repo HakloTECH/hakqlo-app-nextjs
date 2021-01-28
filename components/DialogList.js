@@ -30,7 +30,7 @@ export default class extends React.Component {
   componentDidMount() {
     
     const self=this;
-    
+    console.log(styles);
     window.popup = async function(title, contents=[],buttons=['ok']){
       let resolveV;
       const returnValue = new Promise(resolve=>resolveV=resolve)
@@ -80,12 +80,12 @@ export default class extends React.Component {
                 <menu>
                   {content.buttons.map((v,i)=>{
                   
-                  if (typeof v === "string") {
-                    return(<button key={i+'-button'} type='submit' value={v}>{v}</button>)
-                  } else if (v instanceof Object) {
-                    return(<button type='submit' key={i+'-button'} value={v.value}>{v.text}</button>)
-                  }
-                })}
+                    if (typeof v === "string") {
+                      return(<button key={i+'-button'} type='submit' value={v}>{v}</button>)
+                    } else if (v instanceof Object) {
+                      return(<button type='submit' key={i+'-button'} value={v.value}>{v.text}</button>)
+                    }
+                  })}
                 </menu>
               </form>
             </Modal>
