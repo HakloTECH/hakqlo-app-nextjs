@@ -12,7 +12,7 @@ function getDistanceFromCenter(index, center, listLength) {
 const AppWindow = ({Component, index, controllers, deletable,}) =>{
   //const [touchXStart, setTouchXstart] = useState(0);
   const [touchYStart, setTouchYstart] = useState(0);
-  const [dirVert, setDirVert] = useState(false);
+  const [dirVerti, setDirVert] = useState(false);
   const [winYPos, setWinYPos] = useState(0)
   const [scrollXStart, setScrollXStart] = useState(0);
   const [WLScrollXStart, setWLScrollXStart] = useState(0);
@@ -50,14 +50,14 @@ const AppWindow = ({Component, index, controllers, deletable,}) =>{
      */
     const drx = scrollXStart-e.changedTouches[0].screenX*3.3333/window.screen.width
     const moveLength = drx+WLScrollXStart
-    
+    let dirVert = dirVerti
     const dty = e.changedTouches[0].screenY - touchYStart
     
     const dltLength = 150, xIsSmall = abs(drx)<0.3;
-    if(xIsSmall && dty > 40) setDirVert(true)
-    
-    
+    if(xIsSmall && dty > 50) dirVert = true
+    setDirVert(dirVert)
     if(dirVert){
+      console.log('vertical');
       //the limit
       if(dty>dltLength){
         setWinYPos(dltLength)
@@ -67,17 +67,19 @@ const AppWindow = ({Component, index, controllers, deletable,}) =>{
         setDeleting(false)
       }
       if(xIsSmall) scrollTo(moveLength)
-      if(dty<40) setDirVert(false)
+      if(dty<10) setDirVert(false)
     } else scrollTo(moveLength)
-        
-  },[scrollXStart, WLScrollXStart, appWindows]),
+  },[scrollXStart, WLScrollXStart, appWindows, dirVerti]),
 
   onTouchEnd = useCallback(e => {
     setScrolling(false)
     bringToCenter()
     //do deleting functionality
     if(deleting);
-    else setWinYPos(0)
+    else {
+      setWinYPos(0)
+      setDirVert(false)
+    }
   },[bringToCenter]),
 
   onClick = useCallback(e => {
