@@ -17,6 +17,7 @@ dialog.mobile-dialog {
   font-family: Arial;
   transition: transform 0.5s ease;
   display: block;
+  top: auto;
   bottom: 10px;
   user-select: none;
   &[open] {

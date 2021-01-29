@@ -53,11 +53,14 @@ const AppWindow = ({Component, index, controllers, deletable,}) =>{
     let dirVert = dirVerti
     const dty = e.changedTouches[0].screenY - touchYStart
     
-    const dltLength = 150, xIsSmall = abs(drx)<0.3;
+    const dltLength = 150, smallIntr = 0.3,
+    xLst = drx > -smallIntr, 
+    xGst = drx < smallIntr, 
+    xIsSmall = xLst && xGst;
+
     if(xIsSmall && dty > 50) dirVert = true
     setDirVert(dirVert)
     if(dirVert){
-      console.log('vertical');
       //the limit
       if(dty>dltLength){
         setWinYPos(dltLength)
@@ -67,7 +70,11 @@ const AppWindow = ({Component, index, controllers, deletable,}) =>{
         setDeleting(false)
       }
       if(xIsSmall) scrollTo(moveLength)
-      if(dty<10) setDirVert(false)
+      if(dty<0) {
+        setDirVert(false)
+        if(xLst) setWLScrollXStart(WLScrollXStart-drx+smallIntr)
+        else if(xGst) setWLScrollXStart(WLScrollXStart-drx-smallIntr)
+      }
     } else scrollTo(moveLength)
   },[scrollXStart, WLScrollXStart, appWindows, dirVerti]),
 

@@ -53,7 +53,7 @@ export default class extends React.Component {
   }
   render(){
     return (
-      <div id='dialog-list'>
+      <div>
         {
           this.state.dialogs.map((content, index) =>
             //<Dialog dcontent={content} key={btoa(index)} dList={this} index={index}/>
@@ -63,7 +63,7 @@ export default class extends React.Component {
                 content.resolve(dialog.returnValue)
               }
             } className={
-              styles['mobile-dialog']+' '+(this.state.dialogs.length-1>index) ? styles['sent-back'] : ''
+              styles['mobile-dialog'] + ' '+ ((this.state.dialogs.length-1>index) ? styles['sent-back'] : '')
             }>
               <form method='dialog'>
                 <p className={styles['title']}>
