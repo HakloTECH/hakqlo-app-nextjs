@@ -1,6 +1,6 @@
 import React , { createRef, useEffect, useState, useCallback } from 'react'
 import styles from './WindowList.module.scss'
-const {abs, sin, cos, PI} = Math
+const {abs, sin, cos, round, PI} = Math
 
 function getDistanceFromCenter(index, center, listLength) {
   const b_distance = index - center
@@ -31,6 +31,7 @@ const AppWindow = ({Component, index, controllers, deletable,}) =>{
     bringToCenter, 
     setScrolling, 
     setListView, 
+    setScrollLength
   } = controllers;
   //--- event listeners
   const onTouchStart = useCallback(e => {
@@ -58,7 +59,7 @@ const AppWindow = ({Component, index, controllers, deletable,}) =>{
     xGst = drx < smallIntr, 
     xIsSmall = xLst && xGst;
 
-    if(xIsSmall && dty > 50) dirVert = true
+    if(xIsSmall && dty > 50 && round(scrollLength)===index) dirVert = true
     setDirVert(dirVert)
     if(dirVert){
       //the limit
@@ -92,7 +93,8 @@ const AppWindow = ({Component, index, controllers, deletable,}) =>{
   onClick = useCallback(e => {
     setCurrentWin(index);
     setListView(false)
-  },[])
+    setScrollLength(index)
+  },[index])
   //---------
 
   useEffect(()=>{
