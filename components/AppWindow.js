@@ -83,10 +83,11 @@ const AppWindow = ({Component, index, controllers, deletable,}) =>{
     setScrolling(false)
     bringToCenter()
     //do deleting functionality
+    setDirVert(false)
     if(deleting);
     else {
       setWinYPos(0)
-      setDirVert(false)
+      
     }
   },[bringToCenter]),
 

@@ -10,6 +10,7 @@ class MyDocument extends Document {
           <link rel="apple-touch-icon" href="./icons/favicon.svg" type="image/svg+xml" />
           <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" type="image/png" />
           <link rel="mask-icon" href="./icons/favicon.svg" color="black" />
+          <link rel="manifest" href="./manifest.webmanifest" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
           <meta property="og:image" content="https://hakqlo.github.io/icon/logoOGP.png" />
